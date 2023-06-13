@@ -14,14 +14,21 @@ jobs:
 
       - uses: actions/checkout@v3
 
-      - name: Installing Prerequisites (Kind Cluster)
-        uses: helm/kind-action@v1.4.0
+      - uses: debianmaster/actions-k3s@master
+        id: k3s
+        with:
+          version: 'latest'
+        - run: |
+            kubectl get nodes
+            kubectl get pods -A
+            sleep 20
+            kubectl get pods -A
 
       - name: Configuring and testing the Installation for cluster
         run: |
           sudo apt-get install -y socat
-          kubectl cluster-info --context kind-chart-testing
-          kubectl wait --for=condition=Ready nodes --all --timeout=120s  
+          kubectl wait --for=condition=Ready nodes --all --timeout=120s
+      #          kubectl cluster-info --context kind-chart-testing
 
       - name: Install karmor, kubearmor and discovery engine
         run: |
