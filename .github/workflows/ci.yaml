@@ -1,0 +1,50 @@
+name: Runtime-risks
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Installing Prerequisites (Kind Cluster)
+        uses: helm/kind-action@v1.4.0
+
+      - name: Configuring and testing the Installation
+        run: |
+          kubectl cluster-info --context kind-kind
+          kind get kubeconfig --internal >$HOME/.kube/config
+          kubectl get nodes            
+
+      - name: Install karmor
+        run: |
+          curl -sfL http://get.kubearmor.io/ | sudo sh -s -- -b /usr/local/bin
+          karmor version
+
+      - name: Install kubearmor and Discovery engine
+        run: |
+          karmor install
+          kubectl apply -f https://raw.githubusercontent.com/kubearmor/discovery-engine/dev/deployments/k8s/deployment.yaml
+
+      - name: Generate baseline report
+        run: |
+          karmor summary --agg -o json > /tmp/baseline.json
+
+      - name: Deploy test application
+        run: |
+          kubectl create deployment nginx --image=nginx
+          POD=$(kubectl get pod -l app=nginx -o name)
+
+      - name: Generate report
+        run: |
+          karmor summary --agg -o json > /tmp/summary.json
+
+      - name: Compare baseline report
+        run: |
+          git diff /tmp/baseline.json /tmp/summary.json --histogram 
+
