@@ -17,9 +17,7 @@ jobs:
 
       - name: Configuring and testing the Installation
         run: |
-          kubectl cluster-info --context kind-chart-testing
-          kind get kubeconfig --internal >$HOME/.kube/config
-          kubectl get nodes            
+          kubectl cluster-info --context kind-chart-testing           
 
       - name: Install karmor
         run: |
