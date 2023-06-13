@@ -18,11 +18,12 @@ jobs:
         id: k3s
         with:
           version: 'latest'
-        - run: |
-            kubectl get nodes
-            kubectl get pods -A
-            sleep 20
-            kubectl get pods -A
+
+      - run: |
+          kubectl get nodes
+          kubectl get pods -A
+          sleep 20
+          kubectl get pods -A
 
       - name: Configuring and testing the Installation for cluster
         run: |
