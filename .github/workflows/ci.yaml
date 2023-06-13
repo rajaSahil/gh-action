@@ -39,6 +39,7 @@ jobs:
       - name: Run e2e tests
         run: |
           ls
+          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
           cd kubearmor/tests
           make
 
