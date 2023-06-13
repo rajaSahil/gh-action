@@ -40,8 +40,8 @@ jobs:
       - name: Run e2e tests
         run: |
           ls
-          go install github.com/onsi/ginkgo/ginkgo
           cd kubearmor/tests
+          go install github.com/onsi/ginkgo/ginkgo
           make
 
 #      - name: Deploy test application
