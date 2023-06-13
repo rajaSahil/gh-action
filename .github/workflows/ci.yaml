@@ -52,8 +52,9 @@ jobs:
       - name: Generate report
         run: |
           kubectl wait --for=condition=Ready pods --all -A --timeout=120s
-          kubectl get pods -A
           sleep 200s
+          kubectl get pods -A
+          kubectl logs -f $(kubectl get pods -l app=discovery-engine -A -o jsonpath='{.items[0].metadata.name}') -n accuknox-agents
           karmor summary 
 
 #      - name: Compare baseline report
