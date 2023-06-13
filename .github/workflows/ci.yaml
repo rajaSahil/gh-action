@@ -53,7 +53,7 @@ jobs:
         run: |
           kubectl wait --for=condition=Ready pods --all -A --timeout=120s
           kubectl get pods -A
-          sleep 100s
+          sleep 200s
           karmor summary 
 
 #      - name: Compare baseline report
