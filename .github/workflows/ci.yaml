@@ -52,7 +52,8 @@ jobs:
       - name: Generate report
         run: |
           kubectl wait --for=condition=Ready pods --all -A --timeout=120s
-          karmor summary --agg > /tmp/summary.json
+          kubectl get pods -A
+          karmor summary 
 
 #      - name: Compare baseline report
 #        run: |
