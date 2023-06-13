@@ -20,7 +20,7 @@ jobs:
           repository: kubearmor/kubearmor
           path: kubearmor
 
-      - uses: Install k3s cluster
+      - name: Install k3s cluster
         run: |
           ./kubearmor/contribution/k3s/install_k3s.sh
 
