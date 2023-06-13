@@ -12,18 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@
 
-      - uses: debianmaster/actions-k3s@master
-        id: k3s
+      - name: Checkout Kubearmor repo
+        uses: actions/checkout@v3
         with:
-          version: 'latest'
+          repository: kubearmor/kubearmor
+          path: kubearmor
 
-      - run: |
-          kubectl get nodes
-          kubectl get pods -A
-          sleep 20
-          kubectl get pods -A
+      - uses: Install k3s cluster
+        run: |
+          ./kubearmor/contribution/k3s/install_k3s.sh
 
       - name: Configuring and testing the Installation for cluster
         run: |
@@ -40,11 +39,7 @@ jobs:
           sleep 5s
           kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
 
-      - name: Checkout Kubearmor repo
-        uses: actions/checkout@v3
-        with:
-          repository: kubearmor/kubearmor
-          path: kubearmor
+      
 
 #      - name: Run e2e tests
 #        run: |
