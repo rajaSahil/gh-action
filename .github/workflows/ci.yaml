@@ -16,6 +16,8 @@ jobs:
 
       - name: Installing Prerequisites (Kind Cluster)
         uses: helm/kind-action@v1.4.0
+
+      - name: Configuring and testing the Installation for cluster
         run: |
           kubectl cluster-info --context kind-chart-testing
           kubectl wait --for=condition=Ready nodes --all --timeout=120s  
@@ -28,8 +30,13 @@ jobs:
           kubectl apply -f https://raw.githubusercontent.com/kubearmor/discovery-engine/dev/deployments/k8s/deployment.yaml
           kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
 
+      - name: Checkout Kubearmor repo
+        uses: actions/checkout@v3
+        with:
+          repository: kubearmor/kubearmor
+          path: kubearmor
+
       - name: Run e2e tests
-        uses: kubearmor/kubearmor@main
         run: |
           cd tests
           make
