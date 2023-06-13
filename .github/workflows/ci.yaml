@@ -28,6 +28,7 @@ jobs:
           karmor version
           karmor install
           kubectl apply -f https://raw.githubusercontent.com/kubearmor/discovery-engine/dev/deployments/k8s/deployment.yaml
+          sleep 5s
           kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
 
       - name: Checkout Kubearmor repo
@@ -39,7 +40,7 @@ jobs:
       - name: Run e2e tests
         run: |
           ls
-          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
+          go install github.com/onsi/ginkgo/ginkgo
           cd kubearmor/tests
           make
 
