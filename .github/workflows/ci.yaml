@@ -28,6 +28,7 @@ jobs:
         run: |
           karmor install
           kubectl apply -f https://raw.githubusercontent.com/kubearmor/discovery-engine/dev/deployments/k8s/deployment.yaml
+          sleep 180s
 
       - name: Generate baseline report
         run: |
