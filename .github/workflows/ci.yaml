@@ -12,38 +12,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - uses: actions/checkout@v3
+
       - name: Installing Prerequisites (Kind Cluster)
         uses: helm/kind-action@v1.4.0
-
-      - name: Configuring and testing the Installation
         run: |
-          kubectl cluster-info --context kind-chart-testing           
+          kubectl cluster-info --context kind-chart-testing
+          kubectl wait --for=condition=Ready nodes --all --timeout=120s  
 
-      - name: Install karmor
+      - name: Install karmor, kubearmor and discovery engine
         run: |
           curl -sfL http://get.kubearmor.io/ | sudo sh -s -- -b /usr/local/bin
           karmor version
-
-      - name: Install kubearmor and Discovery engine
-        run: |
           karmor install
           kubectl apply -f https://raw.githubusercontent.com/kubearmor/discovery-engine/dev/deployments/k8s/deployment.yaml
-          sleep 180s
+          kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
 
-      - name: Generate baseline report
+      - name: Run e2e tests
+        uses: kubearmor/kubearmor@main
         run: |
-          karmor summary --agg -o json > /tmp/baseline.json
+          cd tests
+          make
 
-      - name: Deploy test application
-        run: |
-          kubectl create deployment nginx --image=nginx
-          POD=$(kubectl get pod -l app=nginx -o name)
+#      - name: Deploy test application
+#        run: |
+#          kubectl create deployment nginx --image=nginx
+#          POD=$(kubectl get pod -l app=nginx -o name)
 
       - name: Generate report
         run: |
           karmor summary --agg -o json > /tmp/summary.json
 
-      - name: Compare baseline report
-        run: |
-          git diff /tmp/baseline.json /tmp/summary.json --histogram 
+#      - name: Compare baseline report
+#        run: |
+#          git diff /tmp/baseline.json /tmp/summary.json --histogram
 
