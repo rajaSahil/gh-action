@@ -19,6 +19,7 @@ jobs:
 
       - name: Configuring and testing the Installation for cluster
         run: |
+          sudo apt-get install -y socat
           kubectl cluster-info --context kind-chart-testing
           kubectl wait --for=condition=Ready nodes --all --timeout=120s  
 
@@ -52,10 +53,11 @@ jobs:
       - name: Generate report
         run: |
           kubectl wait --for=condition=Ready pods --all -A --timeout=120s
-          sleep 200s
+          sleep 100s
           kubectl get pods -A
-          kubectl logs -f $(kubectl get pods -l app=discovery-engine -A -o jsonpath='{.items[0].metadata.name}') -n accuknox-agents
-          karmor summary 
+          karmor summary
+#          kubectl logs -f $(kubectl get pods -l kubearmor-app=kubearmor-relay -A -o jsonpath='{.items[0].metadata.name}') -n kubesystem | tail
+#          kubectl logs -f $(kubectl get pods -l app=discovery-engine -A -o jsonpath='{.items[0].metadata.name}') -n accuknox-agents
 
 #      - name: Compare baseline report
 #        run: |
