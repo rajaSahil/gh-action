@@ -41,7 +41,7 @@ jobs:
         run: |
           ls
           cd kubearmor/tests
-          go install -mod=go.mod github.com/onsi/ginkgo/ginkgo
+          go install -mod=mod github.com/onsi/ginkgo/ginkgo
           make test
 
 #      - name: Deploy test application
