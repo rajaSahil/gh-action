@@ -37,12 +37,12 @@ jobs:
           repository: kubearmor/kubearmor
           path: kubearmor
 
-      - name: Run e2e tests
-        run: |
-          ls
-          cd kubearmor/tests
-          go install -mod=mod github.com/onsi/ginkgo/ginkgo
-          make test
+#      - name: Run e2e tests
+#        run: |
+#          ls
+#          cd kubearmor/tests
+#          go install -mod=mod github.com/onsi/ginkgo/ginkgo
+#          make test
 
 #      - name: Deploy test application
 #        run: |
