@@ -54,6 +54,7 @@ jobs:
       - name: Generate report
         run: |
           kubectl wait --for=condition=Ready pods --all -A --timeout=120s
+          sleep 150s
           kubectl get pods -A
           karmor summary -p nginx
           
