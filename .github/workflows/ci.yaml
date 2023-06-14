@@ -55,7 +55,7 @@ jobs:
         run: |
           kubectl wait --for=condition=Ready pods --all -A --timeout=120s
           kubectl get pods -A
-          karmor summary 
+          karmor summary -p nginx
           
 
 #      - name: Compare baseline report
