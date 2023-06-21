@@ -10,6 +10,8 @@ on:
 jobs:
   Tests:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
 
       - name: Checkout repo
@@ -69,8 +71,12 @@ jobs:
           name: Baseline report
           path: downloads
 
-      - name: PR comment with file
-        uses: thollander/actions-comment-pull-request@v2
+#      - name: PR comment with file
+#        uses: thollander/actions-comment-pull-request@v2
+#        with:
+#          filePath: downloads/table
+
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
         with:
-          filePath: downloads/table
-    
+          path: downloads/table
