@@ -58,9 +58,10 @@ jobs:
         run: |
           sleep 200s
           mkdir downloads
-          touch report.json
-          ./accuknox-cli/accuknox-cli report > downloads/report.json
-          cat downloads/report.json
+          touch table
+          ./accuknox-cli/accuknox-cli report > downloads/table
+          cat downloads/table
+          mv /tmp/report-*.json downloads/report.json
 
       - name: Upload artifects
         uses: actions/upload-artifact@v2
