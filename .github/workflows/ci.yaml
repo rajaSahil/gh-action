@@ -68,4 +68,9 @@ jobs:
         with:
           name: Baseline report
           path: downloads
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: downloads/table
     
