@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: rajaSahil/accuknox-cli
+          ref: feat-report
           path: accuknox-cli
 
       - name: Install accuknox-cli, kubearmor and discovery engine
