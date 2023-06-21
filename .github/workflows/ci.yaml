@@ -45,16 +45,26 @@ jobs:
           kubectl create deployment nginx --image=nginx
           POD=$(kubectl get pod -l app=nginx -o name)
 
+      - name: Install helm and kube-prometheus-stack
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm repo update
+          helm install kps prometheus-community/kube-prometheus-stack
+
       - name: Generate report
         run: |
           sleep 200s
           mkdir downloads
+          touch report.json
           ./accuknox-cli/accuknox-cli report > downloads/report.json
           cat downloads/report.json
 
       - name: Upload artifects
         uses: actions/upload-artifact@v2
         with:
-          name: Baseline report path
+          name: Baseline report
           path: downloads
     
