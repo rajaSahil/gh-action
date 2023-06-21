@@ -36,7 +36,6 @@ jobs:
         run: |
           cd accuknox-cli
           make install
-          cp accuknox-cli ../
           ./accuknox-cli version
           ./accuknox-cli install
           kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
@@ -48,6 +47,7 @@ jobs:
 
       - name: Generate report
         run: |
+          cd accuknox-cli
           sleep 200s
           ./accuknox-cli report > /tmp/report.json
     
