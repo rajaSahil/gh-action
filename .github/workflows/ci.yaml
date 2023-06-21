@@ -47,7 +47,14 @@ jobs:
 
       - name: Generate report
         run: |
-          cd accuknox-cli
           sleep 200s
-          ./accuknox-cli report > /tmp/report.json
+          mkdir downloads
+          ./accuknox-cli/accuknox-cli report > downloads/report.json
+          cat downloads/report.json
+
+      - name: Upload artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: Baseline report path
+          path: downloads
     
