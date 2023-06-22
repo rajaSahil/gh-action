@@ -24,13 +24,6 @@ jobs:
           mkdir downloads
           cp baseline/report.json downloads/report.json
 
-      - name: comment PR
-        uses: machine-learning-apps/pr-comment@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          path: downloads/report.json
-
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
         with:
