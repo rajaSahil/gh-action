@@ -1,0 +1,137 @@
+open /home/sahil/report.json: no such file or directory
+
+  Pod Name                                                                          
+  Namespace Name  default                                                           
+  Cluster Name    default                                                           
+  Container Name  91370e5d37cf64767d001ec21b1625ce46aa58cd247a92e894fe4aff72e7bb6b  
+  Labels                                                                            
+
+Process Data
++------------------------------------+------------------------------------+-------+-------------------+--------+
+|            SRC PROCESS             |      DESTINATION PROCESS PATH      | COUNT | LAST UPDATED TIME | STATUS |
++------------------------------------+------------------------------------+-------+-------------------+--------+
+| /bin/bash                          | /bin/mkdir                         |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /usr/local/bin/mount-product-files |       |                   | [0;32mAllow[0m  |
+| /usr/bin/bash                      | /usr/bin/cp                        |       |                   | [0;32mAllow[0m  |
+| /usr/bin/bash                      | /usr/bin/jq                        |       |                   | [0;32mAllow[0m  |
+| /usr/bin/bash                      | /usr/bin/mount                     |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /usr/bin/cp                        |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /usr/bin/jq                        |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /usr/bin/jq                        |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /usr/bin/mount                     |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /usr/local/bin/mount-product-files |       |                   | [0;32mAllow[0m  |
++------------------------------------+------------------------------------+-------+-------------------+--------+
+
+
+  Pod Name                                                                          
+  Namespace Name  default                                                           
+  Cluster Name    default                                                           
+  Container Name  91370e5d37cf64767d001ec21b1625ce46aa58cd247a92e894fe4aff72e7bb6b  
+  Labels                                                                            
+
+File Data
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------+--------+
+|            SRC PROCESS             |                                                                DESTINATION FILE PATH                                                                 | COUNT | LAST UPDATED TIME | STATUS |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------+--------+
+| /app/.venv/bin/python              | /app/.venv/lib/python3.11/site-packages/                                                                                                             |       |                   | [0;31mBlock[0m  |
+| /app/.venv/bin/python              | /usr/local/lib/python3.11/                                                                                                                           |       |                   | [0;31mBlock[0m  |
+| /bin/node_exporter                 | /host/sys/class/dmi/id/board_serial                                                                                                                  |       |                   | [0;31mBlock[0m  |
+| /bin/node_exporter                 | /host/sys/class/dmi/id/chassis_serial                                                                                                                |       |                   | [0;31mBlock[0m  |
+| /bin/operator                      | /bin/operator                                                                                                                                        |       |                   | [0;32mAllow[0m  |
+| /bin/operator                      | /cert/..2023_06_21_23_17_48.2371343257/key                                                                                                           |       |                   | [0;32mAllow[0m  |
+| /bin/operator                      | /sys/kernel/mm/transparent_hugepage/hpage_pmd_size                                                                                                   |       |                   | [0;32mAllow[0m  |
+| /bin/operator                      | /var/run/secrets/kubernetes.io/serviceaccount/..2023_06_21_23_17_47.1424603705/ca.crt                                                                |       |                   | [0;32mAllow[0m  |
+| /bin/operator                      | /var/run/secrets/kubernetes.io/serviceaccount/..2023_06_21_23_17_47.1424603705/token                                                                 |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /                                                                                                                                                    |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /bin/prometheus-config-reloader                                                                                                                      |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /dev/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /etc/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /proc/6128/mountinfo                                                                                                                                 |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/dev                     |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/dev/pts                 |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/dev/shm                 |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/dev/termination-log     |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/etc/hostname            |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/etc/resolv.conf         |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /run/containerd/io.containerd.runtime.v2.task/k8s.io/cd85b9f9b4de2b1d6697b551aa30516f510a757c7f6b8b0c293b320a58c0eb2c/rootfs/proc                    |       |                   | [0;32mAllow[0m  |
+| /bin/prometheus-config-reloader    | /sys/kernel/mm/transparent_hugepage/hpage_pmd_size                                                                                                   |       |                   | [0;32mAllow[0m  |
+| /kube-state-metrics                | /kube-state-metrics                                                                                                                                  |       |                   | [0;32mAllow[0m  |
+| /kube-webhook-certgen              | /kube-webhook-certgen                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /kube-webhook-certgen              | /sys/kernel/mm/transparent_hugepage/hpage_pmd_size                                                                                                   |       |                   | [0;32mAllow[0m  |
+| /kube-webhook-certgen              | /var/run/secrets/kubernetes.io/serviceaccount/..2023_06_21_23_17_52.2953352750/ca.crt                                                                |       |                   | [0;32mAllow[0m  |
+| /kube-webhook-certgen              | /var/run/secrets/kubernetes.io/serviceaccount/..2023_06_21_23_17_52.2953352750/token                                                                 |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /etc/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /tmp/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/lib/libncursesw.so.6.3                                                                                                                          |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/lib/libreadline.so.8.2                                                                                                                          |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/ca-certificates/mozilla/                                                                                                                  |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/grafana/public/app/plugins/datasource                                                                                                     |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/grafana/public/app/plugins/datasource/                                                                                                    |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/grafana/public/app/plugins/panel/                                                                                                         |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/grafana/public/emails                                                                                                                     |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/grafana/public/emails/                                                                                                                    |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /usr/share/grafana/public/img/user_profile.png                                                                                                       |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /var/lib/grafana                                                                                                                                     |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /var/lib/grafana/alerting                                                                                                                            |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /var/lib/grafana/alerting/1/__default__.tmpl                                                                                                         |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /var/lib/grafana/grafana.db                                                                                                                          |       |                   | [0;32mAllow[0m  |
+| /run.sh                            | /var/lib/grafana/grafana.db-journal                                                                                                                  |       |                   | [0;32mAllow[0m  |
+| /usr/bin/cp                        | /etc/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/bin/cp                        | /product_name                                                                                                                                        |       |                   | [0;32mAllow[0m  |
+| /usr/bin/jq                        | /etc/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/bin/jq                        | /usr/lib/x86_64-linux-gnu/                                                                                                                           |       |                   | [0;32mAllow[0m  |
+| /usr/bin/mount                     | /etc/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/bin/mount                     | /usr/lib/x86_64-linux-gnu/                                                                                                                           |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /dev/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /etc/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /kind                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /usr/lib/x86_64-linux-gnu/                                                                                                                           |       |                   | [0;32mAllow[0m  |
+| /usr/local/bin/mount-product-files | /usr/local/bin/mount-product-files                                                                                                                   |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /dev/                                                                                                                                                |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /run/containerd/io.containerd.runtime.v2.task/k8s.io/bd266fb7c7b9fb20ffbef226b742e844c5068cb02dfbc137f41ea61ef9e52737/rootfs/dev/shm                 |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /run/containerd/io.containerd.runtime.v2.task/k8s.io/bd266fb7c7b9fb20ffbef226b742e844c5068cb02dfbc137f41ea61ef9e52737/rootfs/etc/grafana/grafana.ini |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /run/containerd/io.containerd.runtime.v2.task/k8s.io/bd266fb7c7b9fb20ffbef226b742e844c5068cb02dfbc137f41ea61ef9e52737/rootfs/etc/hostname            |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /run/containerd/io.containerd.runtime.v2.task/k8s.io/bd266fb7c7b9fb20ffbef226b742e844c5068cb02dfbc137f41ea61ef9e52737/rootfs/var/lib/grafana         |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /var/lib/grafana                                                                                                                                     |       |                   | [0;32mAllow[0m  |
+| /usr/share/grafana/bin/grafana     | /var/lib/grafana/grafana.db-journal                                                                                                                  |       |                   | [0;32mAllow[0m  |
++------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------+--------+
+
+
+  Pod Name                                                                          
+  Namespace Name  default                                                           
+  Cluster Name    default                                                           
+  Container Name  91370e5d37cf64767d001ec21b1625ce46aa58cd247a92e894fe4aff72e7bb6b  
+  Labels                                                                            
+
+Ingress connections
++----------+---------------------+----------------------------------------+------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------+
+| PROTOCOL |       COMMAND       |               POD/SVC/IP               | PORT | NAMESPACE |                                                                                                                                                                       LABELS                                                                                                                                                                       | COUNT | LAST UPDATED TIME |
++----------+---------------------+----------------------------------------+------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------+
+| TCPv6    | /bin/node_exporter  | pod/kps-prometheus-node-exporter-rq7cs | 9100 | default   | app.kubernetes.io/component=metrics,app.kubernetes.io/instance=kps,app.kubernetes.io/managed-by=Helm,app.kubernetes.io/name=prometheus-node-exporter,app.kubernetes.io/part-of=prometheus-node-exporter,app.kubernetes.io/version=1.5.0,helm.sh/chart=prometheus-node-exporter-4.17.5,jobLabel=node-exporter,pod-template-generation=1,release=kps |       |                   |
+| TCPv6    | /kube-state-metrics | 10.244.0.1                             | 8080 |           |                                                                                                                                                                                                                                                                                                                                                    |       |                   |
+| TCPv6    | /run.sh             | ::1                                    | 3000 |           |                                                                                                                                                                                                                                                                                                                                                    |       |                   |
++----------+---------------------+----------------------------------------+------+-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------+-------------------+
+
+
+Egress connections
++----------+---------------------+-----------------+------+-----------+-----------------------------------------+-------+-------------------+
+| PROTOCOL |       COMMAND       |   POD/SVC/IP    | PORT | NAMESPACE |                 LABELS                  | COUNT | LAST UPDATED TIME |
++----------+---------------------+-----------------+------+-----------+-----------------------------------------+-------+-------------------+
+| TCP      | /kube-state-metrics | svc/kubernetes  | 443  | default   | provider=kubernetes,component=apiserver |       |                   |
+| TCP      | /run.sh             | 34.120.177.193  | 443  |           |                                         |       |                   |
+| TCP      | /run.sh             | 185.199.110.133 | 443  |           |                                         |       |                   |
++----------+---------------------+-----------------+------+-----------+-----------------------------------------+-------+-------------------+
+
+
+Bind Points
++----------+---------------------+-----------+--------------+-------+-------------------+
+| PROTOCOL |       COMMAND       | BIND PORT | BIND ADDRESS | COUNT | LAST UPDATED TIME |
++----------+---------------------+-----------+--------------+-------+-------------------+
+| AF_INET6 | /kube-state-metrics | 8081      | ::           |       |                   |
+| AF_INET6 | /kube-state-metrics | 0         | ::1          |       |                   |
+| AF_INET6 | /bin/operator       | 10250     | ::           |       |                   |
+| AF_INET6 | /bin/operator       | 0         | ::1          |       |                   |
+| AF_INET6 | /kube-state-metrics | 8080      | ::           |       |                   |
+| AF_INET6 | /run.sh             | 3000      | ::           |       |                   |
++----------+---------------------+-----------+--------------+-------+-------------------+
+

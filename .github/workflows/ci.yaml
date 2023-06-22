@@ -80,3 +80,4 @@ jobs:
         uses: machine-learning-apps/pr-comment@master
         with:
           path: downloads/table
+          github_token: ${{ secrets.GITHUB_TOKEN }}
