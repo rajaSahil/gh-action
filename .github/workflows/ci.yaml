@@ -8,9 +8,6 @@ on:
   workflow_dispatch:
 
 jobs:
-
-
-
   Tests:
     runs-on: ubuntu-latest
     permissions:
@@ -28,6 +25,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           path: baseline/table
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: baseline/table
 
 #      - name: Installing Prerequisites (Kind Cluster)
 #        uses: helm/kind-action@v1.4.0
