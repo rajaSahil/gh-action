@@ -19,74 +19,83 @@ jobs:
         with:
           submodules: true
 
-      - name: Installing Prerequisites (Kind Cluster)
-        uses: helm/kind-action@v1.4.0
-
-      - name: Configuring and testing the Installation for cluster
+      - name: Create folder
         run: |
-          kubectl cluster-info --context kind-chart-testing
-          kubectl wait --for=condition=Ready nodes --all --timeout=120s
-
-      - name: Checkout accuknox-cli repo
-        uses: actions/checkout@v3
-        with:
-          repository: rajaSahil/accuknox-cli
-          ref: feat-report
-          path: accuknox-cli
-
-      - name: Install accuknox-cli, kubearmor and discovery engine
-        run: |
-          cd accuknox-cli
-          make install
-          ./accuknox-cli version
-          ./accuknox-cli install
-          kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
-
-      - name: Deploy test application
-        run: |
-          kubectl create deployment nginx --image=nginx
-          POD=$(kubectl get pod -l app=nginx -o name)
-
-      - name: Install helm and kube-prometheus-stack
-        run: |
-          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-          chmod 700 get_helm.sh
-          ./get_helm.sh
-          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-          helm repo update
-          helm install kps prometheus-community/kube-prometheus-stack
-
-      - name: Generate report
-        run: |
-          sleep 200s
           mkdir downloads
-          touch table
-          ./accuknox-cli/accuknox-cli report -b "baseline/report.json" > downloads/table
-          cat downloads/table
-          mv /tmp/report-*.json downloads/report.json
-          mv /tmp/diff-report-*.json downloads/diff-report.json
+          cp baseline/report.json downloads/report.json
 
-      - name: Upload artifects
-        uses: actions/upload-artifact@v2
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: Baseline report
-          path: downloads
+          path: downloads/report.json
 
-#      - name: PR comment with file
-#        uses: thollander/actions-comment-pull-request@v2
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: downloads/report.json
+
+#      - name: Installing Prerequisites (Kind Cluster)
+#        uses: helm/kind-action@v1.4.0
+#
+#      - name: Configuring and testing the Installation for cluster
+#        run: |
+#          kubectl cluster-info --context kind-chart-testing
+#          kubectl wait --for=condition=Ready nodes --all --timeout=120s
+#
+#      - name: Checkout accuknox-cli repo
+#        uses: actions/checkout@v3
 #        with:
-#          filePath: downloads/table
-
-      - name: comment PR
-        uses: machine-learning-apps/pr-comment@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          path: downloads/table
-
-      - name: comment PR
-        uses: machine-learning-apps/pr-comment@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          path: downloads/diff-report.json
+#          repository: rajaSahil/accuknox-cli
+#          ref: feat-report
+#          path: accuknox-cli
+#
+#      - name: Install accuknox-cli, kubearmor and discovery engine
+#        run: |
+#          cd accuknox-cli
+#          make install
+#          ./accuknox-cli version
+#          ./accuknox-cli install
+#          kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
+#
+#      - name: Deploy test application
+#        run: |
+#          kubectl create deployment nginx --image=nginx
+#          POD=$(kubectl get pod -l app=nginx -o name)
+#
+#      - name: Install helm and kube-prometheus-stack
+#        run: |
+#          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+#          chmod 700 get_helm.sh
+#          ./get_helm.sh
+#          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+#          helm repo update
+#          helm install kps prometheus-community/kube-prometheus-stack
+#
+#      - name: Generate report
+#        run: |
+#          sleep 200s
+#          mkdir downloads
+#          touch table
+#          ./accuknox-cli/accuknox-cli report > downloads/table
+#          cat downloads/table
+#          mv /tmp/report-*.json downloads/report.json
+#
+#      - name: Upload artifects
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: Baseline report
+#          path: downloads
+#
+##      - name: PR comment with file
+##        uses: thollander/actions-comment-pull-request@v2
+##        with:
+##          filePath: downloads/table
+#
+#      - name: comment PR
+#        uses: machine-learning-apps/pr-comment@master
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          path: downloads/table
