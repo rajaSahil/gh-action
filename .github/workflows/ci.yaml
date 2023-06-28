@@ -65,6 +65,8 @@ jobs:
           cat downloads/table
           mv /tmp/report-*.json downloads/report.json
           mv /tmp/diff-report-*.json downloads/diff-report.json
+          mv /tmp/diff-report-*.md downloads/diff-report.md
+
 
       - name: Upload artifects
         uses: actions/upload-artifact@v2
@@ -75,4 +77,4 @@ jobs:
       - name: PR comment with file
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: downloads/table
+          filePath: downloads/diff-report.md
