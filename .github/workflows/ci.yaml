@@ -38,7 +38,7 @@ jobs:
 
       - name: Compile libbpf
         run: |
-          cd KubeArmor/BPF
+          cd /Kubearmor/KubeArmor/BPF
           sudo apt install bpftool
           make -C libbpf/src
 
