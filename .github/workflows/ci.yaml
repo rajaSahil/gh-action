@@ -41,7 +41,7 @@ jobs:
           ls
           cd Kubearmor
           ls
-          cd KubeArmor
+          cd KubeArmor/BPF
           ls
           make -C libbpf/src
 
