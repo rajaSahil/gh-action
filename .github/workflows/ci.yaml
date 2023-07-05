@@ -42,6 +42,7 @@ jobs:
           cd Kubearmor
           ls
           cd KubeArmor/BPF
+          git submodule update --init --recursive
           ls
           make -C libbpf/src
 
