@@ -47,7 +47,7 @@ jobs:
           make -C libbpf/src
 
       - name: Setup a Kubernetes environment
-        run: ./Kubearmor/.github/workflows/install-k3s.sh
+        run: ./Kubearmor/contribution/k3s/install_k3s.sh
 
       - name: Configuring and testing the Installation for cluster
         run: |
