@@ -41,7 +41,6 @@ jobs:
           ls
           cd Kubearmor
           ls
-          sudo apt install bpftool
           cd Kubearmor/KubeArmor
           ls
           make -C libbpf/src
