@@ -67,7 +67,8 @@ jobs:
           make install
           ./accuknox-cli version
           ./accuknox-cli install
-#          kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=120s
+          kubectl get pods -A
+          kubectl wait --for=condition=Ready pods --all -n accuknox-agents --timeout=200s
 
       - name: Deploy test application
         run: |
