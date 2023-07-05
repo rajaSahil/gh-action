@@ -37,7 +37,10 @@ jobs:
         run: ./Kubearmor/.github/workflows/install-llvm.sh
 
       - name: Compile libbpf
-        run: ./Kubearmor/.github/workflows/install-libbpf.sh
+        run: |
+          cd KubeArmor/Kubearmor/BPF
+          sudo apt install bpftool
+          make -C libbpf/src
 
       - name: Setup a Kubernetes environment
         run: ./Kubearmor/.github/workflows/install-k3s.sh
@@ -78,6 +81,7 @@ jobs:
 
       - name: Test KubeArmor using Ginkgo
         run: |
+          cd Kubearmor
           go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
           make -C tests/
         timeout-minutes: 30
