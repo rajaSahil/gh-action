@@ -19,6 +19,9 @@ jobs:
         with:
           submodules: true
 
+#      - name: Installing Prerequisites (Kind Cluster)
+#        uses: helm/kind-action@v1.4.0
+
       - name: Checkout kubearmor repo
         uses: actions/checkout@v3
         with:
@@ -31,13 +34,13 @@ jobs:
           go-version: "v1.20"
 
       - name: Install the latest LLVM toolchain
-        run: ./.github/workflows/install-llvm.sh
+        run: ./Kubearmor/.github/workflows/install-llvm.sh
 
       - name: Compile libbpf
-        run: ./.github/workflows/install-libbpf.sh
+        run: ./Kubearmor/.github/workflows/install-libbpf.sh
 
       - name: Setup a Kubernetes environment
-        run: ./.github/workflows/install-k3s.sh
+        run: ./Kubearmor/.github/workflows/install-k3s.sh
 
       - name: Configuring and testing the Installation for cluster
         run: |
