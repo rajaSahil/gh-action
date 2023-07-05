@@ -51,7 +51,6 @@ jobs:
 
       - name: Configuring and testing the Installation for cluster
         run: |
-          kubectl cluster-info --context kind-chart-testing
           kubectl wait --for=condition=Ready nodes --all --timeout=120s
 
       - name: Checkout accuknox-cli repo
