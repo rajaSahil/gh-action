@@ -19,8 +19,25 @@ jobs:
         with:
           submodules: true
 
-      - name: Installing Prerequisites (Kind Cluster)
-        uses: helm/kind-action@v1.4.0
+      - name: Checkout kubearmor repo
+        uses: actions/checkout@v3
+        with:
+          repository: kubearmor/Kubearmor
+          ref: main
+          path: Kubearmor
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version: "v1.20"
+
+      - name: Install the latest LLVM toolchain
+        run: ./.github/workflows/install-llvm.sh
+
+      - name: Compile libbpf
+        run: ./.github/workflows/install-libbpf.sh
+
+      - name: Setup a Kubernetes environment
+        run: ./.github/workflows/install-k3s.sh
 
       - name: Configuring and testing the Installation for cluster
         run: |
@@ -47,14 +64,20 @@ jobs:
           kubectl create deployment nginx --image=nginx
           POD=$(kubectl get pod -l app=nginx -o name)
 
-      - name: Install helm and kube-prometheus-stack
+#      - name: Install helm and kube-prometheus-stack
+#        run: |
+#          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+#          chmod 700 get_helm.sh
+#          ./get_helm.sh
+#          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+#          helm repo update
+#          helm install kps prometheus-community/kube-prometheus-stack
+
+      - name: Test KubeArmor using Ginkgo
         run: |
-          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-          chmod 700 get_helm.sh
-          ./get_helm.sh
-          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-          helm repo update
-          helm install kps prometheus-community/kube-prometheus-stack
+          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
+          make -C tests/
+        timeout-minutes: 30
 
       - name: Generate report
         run: |
