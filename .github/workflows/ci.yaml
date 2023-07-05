@@ -64,7 +64,7 @@ jobs:
       - name: Install accuknox-cli, kubearmor and discovery engine
         run: |
           cd accuknox-cli
-          make install
+#          make install
           ./accuknox-cli version
           ./accuknox-cli install
           kubectl get pods -A
