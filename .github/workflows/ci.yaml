@@ -25,7 +25,7 @@ jobs:
       - name: Checkout kubearmor repo
         uses: actions/checkout@v3
         with:
-          repository: kubearmor/Kubearmor
+          repository: kubearmor/KubeArmor
           ref: main
           path: Kubearmor
 
@@ -41,8 +41,9 @@ jobs:
           ls
           cd Kubearmor
           ls
-          cd Kubearmor/KubeArmor/BPF
           sudo apt install bpftool
+          cd Kubearmor/KubeArmor
+          ls
           make -C libbpf/src
 
       - name: Setup a Kubernetes environment
