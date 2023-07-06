@@ -103,6 +103,7 @@ jobs:
 
       - name: Test Discovery engine using Ginkgo
         run: |
+          curl -sfL http://get.kubearmor.io/ | sudo sh -s -- -b /usr/local/bin
           cd discovery-engine/tests
           go mod tidy
           go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
