@@ -29,6 +29,13 @@ jobs:
           ref: main
           path: Kubearmor
 
+      - name: Checkout Discovery engine repo
+        uses: actions/checkout@v3
+        with:
+          repository: accuknox/discovery-engine
+          ref: dev
+          path: discovery-engine
+
       - uses: actions/setup-go@v3
         with:
           go-version: "v1.20"
@@ -88,11 +95,18 @@ jobs:
 #          helm repo update
 #          helm install kps prometheus-community/kube-prometheus-stack
 
-      - name: Test KubeArmor using Ginkgo
+#      - name: Test KubeArmor using Ginkgo
+#        run: |
+#          cd Kubearmor
+#          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
+#          make -C tests/
+#        timeout-minutes: 30
+
+      - name: Test Discovery engine using Ginkgo
         run: |
-          cd Kubearmor
+          cd discovery-engine
           go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
-          make -C tests/
+          ginkgo -r
         timeout-minutes: 30
 
       - name: Generate report
