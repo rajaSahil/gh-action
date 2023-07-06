@@ -104,6 +104,7 @@ jobs:
       - name: Test Discovery engine using Ginkgo
         run: |
           cd discovery-engine/tests
+          go mod tidy
           go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
           ginkgo -r
         timeout-minutes: 30
