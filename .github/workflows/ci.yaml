@@ -69,6 +69,8 @@ jobs:
           kubectl get pods -A
           sleep 100
           kubectl get pods -A
+          sleep 100
+          kubectl get pods -A
 #          kubectl describe -f $(kubectl get pods -l app=discovery-engine -A -o jsonpath='{.items[0].metadata.name}') -n accuknox-agents
 
 
