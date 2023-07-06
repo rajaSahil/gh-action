@@ -97,7 +97,9 @@ jobs:
 
       - name: Generate report
         run: |
+          kubectl get pods -A
           sleep 200
+          kubectl get pods -A
           mkdir downloads
           touch table
           ./accuknox-cli/accuknox-cli report -b "baseline/report.json" > downloads/table
