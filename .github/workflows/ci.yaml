@@ -97,6 +97,7 @@ jobs:
 
       - name: Generate report
         run: |
+          sleep 200
           mkdir downloads
           touch table
           ./accuknox-cli/accuknox-cli report -b "baseline/report.json" > downloads/table
