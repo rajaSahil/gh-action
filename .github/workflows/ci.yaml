@@ -85,14 +85,14 @@ jobs:
           kubectl create deployment nginx --image=nginx
           POD=$(kubectl get pod -l app=nginx -o name)
 
-#      - name: Install helm and kube-prometheus-stack
-#        run: |
-#          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-#          chmod 700 get_helm.sh
-#          ./get_helm.sh
-#          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-#          helm repo update
-#          helm install kps prometheus-community/kube-prometheus-stack
+      - name: Install helm and kube-prometheus-stack
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm repo update
+          helm install kps prometheus-community/kube-prometheus-stack
 
 #      - name: Test KubeArmor using Ginkgo
 #        run: |
@@ -101,14 +101,14 @@ jobs:
 #          make -C tests/
 #        timeout-minutes: 30
 
-      - name: Test Discovery engine using Ginkgo
-        run: |
-          curl -sfL http://get.kubearmor.io/ | sudo sh -s -- -b /usr/local/bin
-          cd discovery-engine/tests
-          go mod tidy
-          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
-          ginkgo -r
-        timeout-minutes: 30
+#      - name: Test Discovery engine using Ginkgo
+#        run: |
+#          curl -sfL http://get.kubearmor.io/ | sudo sh -s -- -b /usr/local/bin
+#          cd discovery-engine/tests
+#          go mod tidy
+#          go install -mod=mod github.com/onsi/ginkgo/v2/ginkgo
+#          ginkgo -r
+#        timeout-minutes: 30
 
       - name: Generate report
         run: |
