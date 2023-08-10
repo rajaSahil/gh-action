@@ -18,14 +18,14 @@ runs:
         repository: rajaSahil/accuknox-cli
         ref: feat-report
         path: accuknox-cli
-    - if: ${{ inputs.action  == 'install' }}
+    - if: ${{ inputs.action  == install }}
       run: |
         cd accuknox-cli
         ./accuknox-cli version
         ./accuknox-cli install
       shell: bash
 
-    - if: ${{ inputs.action  == 'report' }}
+    - if: ${{ inputs.action  == report }}
       run: |
         kubectl get pods -A
         sleep 200
