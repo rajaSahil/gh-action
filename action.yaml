@@ -1,0 +1,26 @@
+name: test-install
+description: 'Install accuknox-cli, kubearmor and discovery engine '
+inputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  random-number:
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-number }}
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout accuknox-cli repo
+      uses: actions/checkout@v3
+      with:
+        repository: rajaSahil/accuknox-cli
+        ref: feat-report
+        path: accuknox-cli
+    - id: Install kubearmor and discovery-engine
+      run: |
+        cd accuknox-cli
+        ./accuknox-cli version
+        ./accuknox-cli install
+      shell: bash

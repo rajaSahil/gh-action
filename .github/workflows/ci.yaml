@@ -19,7 +19,40 @@ jobs:
         with:
           submodules: true
 
-#      - name: Installing Prerequisites (Kind Cluster)
+## Documents should contain desc. of all these fields and how to generate and store the baseline
+## Set of examples [With all the fields]
+##FAQs:
+## - My app. creates temp files and I need to ignore those files, what should be the solution here?
+## - I want my CI to pass, but still generate the report
+## - I want to only list Process, file or syscall events, what should I do?
+## TODO: Create similar action for k8tls
+#
+#      - name: Kubearmor action [2 Actions]
+#        uses: accuknox-action@semver
+#        with:
+#          kubearmor-image: stable[IMAGE_NAME]
+#          discovery-engine: stable[IMAGE_NAME]
+#          workload-namespace: [""] [Phase 2]
+#          license-key: "string"[Secrets] [Phase 2]
+#          user-id: "" [Phase 2]
+#
+#      - name: Kubearmor action to generate report[2 Actions]
+#        uses: accuknox-report@semver
+#        with:
+#          baseline-report-path: "" [Github]
+#          labels: "" ["kubearmor-app: kubearmor-relay"]
+#          operation: ""[Process, file, Network, Syscall]
+#          container-name: "" []
+#          namespaces: [""]
+#          workloads: ["deployment/mysql","statefulsets/vault","deployment/*"]
+#          source: ""
+#          process-ignore-paths: "/sbin" [Regex]
+#          file-ignore-paths: "/sbin" [Regex]
+#          ignore-return-code: true/false
+#          view: tabular/ [Phase 2]
+
+
+      #      - name: Installing Prerequisites (Kind Cluster)
 #        uses: helm/kind-action@v1.4.0
 
       - name: Checkout kubearmor repo
