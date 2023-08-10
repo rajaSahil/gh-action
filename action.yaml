@@ -1,10 +1,10 @@
 name: test-install
 description: 'Install accuknox-cli, kubearmor and discovery engine '
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  action:  # id of input
+    description: 'Which action to perform'
     required: true
-    default: 'World'
+    default: 'install'
 outputs:
   random-number:
     description: "Random number"
@@ -18,9 +18,30 @@ runs:
         repository: rajaSahil/accuknox-cli
         ref: feat-report
         path: accuknox-cli
-    - run: |
+    - if: ${{ inputs.action  == "install" }}
+      run: |
         cd accuknox-cli
         ./accuknox-cli version
         ./accuknox-cli install
       shell: bash
 
+    - if: ${{ inputs.action  == "report" }}
+      run: |
+        kubectl get pods -A
+        sleep 200
+        kubectl get pods -A
+        mkdir downloads
+        touch table
+        ./accuknox-cli/accuknox-cli report -b "baseline/report.json" > downloads/table
+        cat downloads/table
+        mv /tmp/report-*.json downloads/report.json
+        mv /tmp/diff-report-*.json downloads/diff-report.json
+        mv /tmp/diff-report-*.md downloads/diff-report.md
+      shell: bash
+
+    - if: ${{ inputs.action  == "report" }}
+      name: Upload artifects
+      uses: actions/upload-artifact@v2
+      with:
+        name: Baseline report
+        path: downloads
