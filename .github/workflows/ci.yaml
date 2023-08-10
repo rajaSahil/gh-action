@@ -14,4 +14,4 @@ jobs:
       pull-requests: write
     steps:
       - name: test-install
-        uses: rajaSahil/gh-action@v0.0.1
+        uses: rajaSahil/gh-action@v0.0.2
