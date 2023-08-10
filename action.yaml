@@ -18,9 +18,9 @@ runs:
         repository: rajaSahil/accuknox-cli
         ref: feat-report
         path: accuknox-cli
-    - id: Install kubearmor and discovery-engine
-      run: |
+    - run: |
         cd accuknox-cli
         ./accuknox-cli version
         ./accuknox-cli install
       shell: bash
+
