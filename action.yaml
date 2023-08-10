@@ -4,7 +4,8 @@ inputs:
   action:  # id of input
     description: 'Which action to perform'
     required: true
-    default: install
+    default: 'install'
+
 outputs:
   random-number:
     description: "Random number"
@@ -18,14 +19,14 @@ runs:
         repository: rajaSahil/accuknox-cli
         ref: feat-report
         path: accuknox-cli
-    - if: ${{ inputs.action  == install }}
+    - if: ${{ inputs.action  == 'install' }}
       run: |
         cd accuknox-cli
         ./accuknox-cli version
         ./accuknox-cli install
       shell: bash
 
-    - if: ${{ inputs.action  == report }}
+    - if: ${{ inputs.action  == 'report' }}
       run: |
         kubectl get pods -A
         sleep 200
@@ -39,7 +40,7 @@ runs:
         mv /tmp/diff-report-*.md downloads/diff-report.md
       shell: bash
 
-    - if: ${{ inputs.action  == "report" }}
+    - if: ${{ inputs.action  == 'report' }}
       name: Upload artifects
       uses: actions/upload-artifact@v2
       with:
