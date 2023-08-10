@@ -18,6 +18,11 @@ jobs:
         with:
           submodules: true
 
+      - name: test-install
+        uses: rajaSahil/gh-action@v0.0.3
+        with:
+          action: install
+
       - uses: actions/setup-go@v3
         with:
           go-version: "v1.20"
@@ -37,7 +42,4 @@ jobs:
           kubectl wait --for=condition=Ready nodes --all --timeout=120s
           sudo apt install socat
 
-      - name: test-install
-        uses: rajaSahil/gh-action@v0.0.3
-        with:
-          action: install
+
