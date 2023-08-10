@@ -18,11 +18,6 @@ jobs:
         with:
           submodules: true
 
-      - name: test-install
-        uses: rajaSahil/gh-action@v0.0.6
-        with:
-          action: 'install'
-
       - uses: actions/setup-go@v3
         with:
           go-version: "v1.20"
@@ -41,5 +36,40 @@ jobs:
         run: |
           kubectl wait --for=condition=Ready nodes --all --timeout=120s
           sudo apt install socat
+
+      - name: test-install
+        uses: rajaSahil/gh-action@v0.0.6
+        with:
+          action: 'install'
+
+      - name: Deploy test application
+        run: |
+          kubectl create deployment nginx --image=nginx
+          POD=$(kubectl get pod -l app=nginx -o name)
+
+      - name: Install helm and kube-prometheus-stack
+        run: |
+          curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+          chmod 700 get_helm.sh
+          ./get_helm.sh
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm repo update
+          helm install kps prometheus-community/kube-prometheus-stack
+
+      - name: test-install
+        uses: rajaSahil/gh-action@v0.0.6
+        with:
+          action: 'report'
+
+      - name: Upload artifects
+        uses: actions/upload-artifact@v2
+        with:
+          name: Baseline report
+          path: downloads
+
+      - name: PR comment with file
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: downloads/diff-report.md
 
 
